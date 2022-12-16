@@ -6,6 +6,7 @@ import Login from './component/Login';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Home from './component/Home';
 import Transfer from './component/Transfer';
+import Transaction from './component/Transaction';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/transfer" element={<Transfer />} />
+        <Route path="/transaction" element={<Transaction />} />
 
 
       </Routes>

@@ -21,4 +21,15 @@ marquee {
   padding: 20px;
 }
 
+footer {
+  text-align: center;
+  background: rgb(138, 138, 215);
+  color: rgb(3, 4, 5);
+  border: 2px solid rgb(82, 64, 64);
+}
+
+p {
+  text-align: center;
+}
+
 
