@@ -37,14 +37,19 @@ const Home = () => {
                 <li className="nav-item">
                   <a className="nav-link " href="/transfer" style={{ color: 'white' }}>Fund Transfer</a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}>
-                    Account Type
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#" style={{ color: 'black' }}>Saving</a></li>
-                    <li><a className="dropdown-item" href="#" style={{ color: 'black' }}>Current</a></li>
-                  </ul>
+                <li className="nav-item">
+                  {/* <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}>
+                    Balance Type
+                  </a> */}
+                  {/* <ul style={{ background: 'black'}} className="dropdown-menu">
+                    <li><a className="dropdown-item" href="/deposit" style={{ color: 'red' }}>Deposit</a></li>
+                    <li><a className="dropdown-item" href="/withdraw" style={{ color: 'red' }}>Withdraw</a></li>
+                  </ul> */}
+                  <a className="nav-link " href="/deposit" style={{ color: 'white' }}>Deposit</a>
+                </li>
+
+                <li className="nav-item">
+                  <a className="nav-link " href="/withdraw" style={{ color: 'white' }}>Withdraw</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="/transaction" style={{ color: 'white' }}>Transaction History</a>
@@ -69,7 +74,7 @@ const Home = () => {
         {/* <p>Welcome Back <b>{username}</b></p> */}
         {/* <marquee behavior=" " direction="">Wel-Come Back <b>{username}</b> </marquee> */}
         <div style={{ padding: '10px' }} className="alert alert-success" role="alert">
-          <p behavior="" direction="">Wel-Come Back <b>{username}</b></p>
+          <p style={{ textAlign: 'center' }} behavior="" direction="">Wel-Come Back - <b>{username}</b></p>
         </div>
       </div>
       <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false">
