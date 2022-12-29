@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Transaction = () => {
@@ -10,6 +10,8 @@ const Transaction = () => {
     const [startDate, setStartDate] = useState(' ')
     const [endDate, setEndDate] = useState(' ')
     const navigate = useNavigate(' ')
+
+    const params = useParams(' ')
 
     useEffect(() => {
         setUsername(sessionStorage['username'])
@@ -29,11 +31,24 @@ const Transaction = () => {
 
             const token = sessionStorage.getItem('access_token');
             console.log(token)
-            const url = 'http://localhost:8080/emp/account/statement?accountNumber='+accountNumber+'&startDate='+startDate+'&endDate='+endDate
-            axios.get('http://localhost:8080/emp/account/statement?accountNumber='+accountNumber+'&startDate='+startDate+'&endDate='+endDate, 
-            transactionHistory, { headers: { "Authorization": `Bearer  ${token}`, "content-type": 'application/json' } })
+
+            // axios.get('http://localhost:8080/emp/account/statement?accountNumber='+accountNumber+'&startDate='+startDate+'&endDate='+endDate, 
+            // transactionHistory, { headers: { "Authorization": `Bearer  ${token}`, "content-type": 'application/json' } })
+            //     .then((response) => {
+            //         console.log(response.data)
+            //     })
+
+            axios.get('http://localhost:8080/emp/account/statement' , {
+                params: {
+                    accountNumber: +'accountNumber',
+                    startDate: +'startDate',
+                    endDate: 'endDate'
+
+
+                }
+            },
+                transactionHistory, { headers: { "Authorization": `Bearer  ${token}`, "content-type": 'application/json' } })
                 .then((response) => {
-                    console.log("url "+url);
                     console.log(response.data)
                 })
         }

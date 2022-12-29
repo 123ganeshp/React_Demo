@@ -36,6 +36,8 @@ const Transfer = () => {
                     console.log(response.data)
                     toast.success('Transfer Amount Successfully')
                 })
+
+                navigate('/home')
         }
 
     }

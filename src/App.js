@@ -10,7 +10,9 @@ import Transaction from './component/Transaction';
 import Successful from './component/Successful';
 import Deposit from './component/Deposit';
 import Withdraw from './component/Withdraw';
-import SideNav from './component/SideNav';
+// import SideNav from './component/SideNav';
+import ErrResponse from './component/ErrResponse';
+import Response from './component/Response';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/successful" element={<Successful />} />
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/withdraw" element={<Withdraw />} />
+        <Route path="/errresponse" element={<ErrResponse />} /> 
+        <Route path="/response" element={<Response />} />
 
 
       </Routes>

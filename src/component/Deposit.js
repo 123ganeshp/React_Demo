@@ -2,12 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import Response from "./Response";
 const Deposit = () => {
 
     const [username, setUsername] = useState(' ');
     const [accountNumber, setAccountNumber] = useState(' ')
-    const [depositAmount , setDepositAmount] = useState(0)
+    const [depositAmount, setDepositAmount] = useState(0)
 
     const navigate = useNavigate(' ')
 
@@ -17,23 +17,40 @@ const Deposit = () => {
 
     const onDepositAmount = () => {
 
-        const depositAmounts = { accountNumber,depositAmount }
-        
-        if(accountNumber.length === 1) {
+        const depositAmounts = { accountNumber, depositAmount }
+
+        if (accountNumber.length === 1) {
             toast.warning('Enter Account Number')
-        }else if(depositAmount.length === 1) {
+        } else if (depositAmount.length === 1) {
             toast.warning('Enter Deposit Amount')
-        }else {
+        } else {
             const token = sessionStorage.getItem('access_token');
             console.log(token)
-            axios.post('http://localhost:8080/emp/account/deposit?accountNumber='+accountNumber+'&depositAmount='+depositAmount, depositAmounts, 
-            { headers: { "Authorization": `Bearer  ${token}`, "content-type": 'application/json' } })
+            axios.post('http://localhost:8080/emp/account/deposit?accountNumber=' + accountNumber + '&depositAmount=' + depositAmount, depositAmounts,
+                { headers: { "Authorization": `Bearer  ${token}`, "content-type": 'application/json' } })
                 .then((response) => {
-                    console.log(response.data)
-                    toast.success('Amount Deposit Successfully')
+                    // console.log(response.data)
+                    // toast.success('Amount Deposit Successfully')
+                    // toast.success("Amount Credited Successfully");
+
+                    alert(depositAmount + " is credited in account number " + accountNumber);
+
+                    // sessionStorage.user = JSON.stringify(response.data.data[0]);
+
+                    localStorage.setItem("status", JSON.stringify(response.data.statusInfo.message));
+
+                    localStorage.setItem("account", JSON.stringify(response.data.data[0].accountNumber));
+
+                    localStorage.setItem("balance", JSON.stringify(response.data.data[0].accountBalance));
+
+                    localStorage.setItem("operation", "debited")
+
+                    localStorage.setItem("amt", depositAmount);
+
+                    window.location.href = "/Response"
                 })
 
-                navigate('/home')
+            navigate('/home')
         }
 
     }
@@ -58,7 +75,7 @@ const Deposit = () => {
                 </div>
 
                 <div >
-                    <button style={{  animationduration: '5s'}} type="button" className="btn btn-success" onClick={onDepositAmount}>Deposit</button>
+                    <button style={{ animationduration: '5s' }} type="button" className="btn btn-success" onClick={onDepositAmount}>Deposit</button>
                     &nbsp;
                     <button type="button" className="btn btn-warning">Reset</button>
 
